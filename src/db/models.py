@@ -15,14 +15,15 @@ from datetime import datetime,date
 
 class User(SQLModel,table=True):
     __tablename__="users"
-    uid:uuid.UUID=Field(sa_column=Column(pg.UUID,primary_key=True,default=uuid.uuid4))
+    uid:uuid.UUID=Field(default_factory=uuid.uuid4,primary_key=True)
+  
     username:str=Field(sa_column=Column(String,nullable=False,unique=True))
     email:str=Field(sa_column=Column(String,nullable=False,unique=True))
     role:str=Field(sa_column=Column(String,nullable=False,server_default="user"))
     password:str=Field(exclude=True)
     first_name:str=Field(sa_column=Column(String,nullable=False))
     last_name:str=Field(sa_column=Column(String,nullable=False))
-    is_verified:bool=False
+    is_verified:bool=Field(default=False)
     created_at:datetime=Field(sa_column=Column(DateTime,nullable=False,default=datetime.now))
     updated_at:datetime=Field(sa_column=Column(DateTime,nullable=False,default=datetime.now))
 
@@ -30,9 +31,11 @@ class User(SQLModel,table=True):
     reviews:List["Review"]=Relationship(back_populates="user",sa_relationship_kwargs={"lazy":"selectin"})
 
 
+
+
 class Book(SQLModel,table=True):
     __tablename__="books"
-    id:uuid.UUID=Field(sa_column=Column(pg.UUID,nullable=False,primary_key=True,default=uuid.uuid4))
+    id:uuid.UUID=Field(default_factory=uuid.uuid4,primary_key=True)
     title:str
     author:str
     publisher:str
@@ -50,7 +53,7 @@ class Book(SQLModel,table=True):
 
 class Review(SQLModel,table=True):
     __tablename__="reviews"
-    uid:uuid.UUID=Field(sa_column=Column(pg.UUID,primary_key=True,nullable=False,default=uuid.uuid4))
+    uid:uuid.UUID=Field(default_factory=uuid.uuid4,primary_key=True)
     rating:int=Field(lt=5)
     review_text:str
     user_uid:Optional[uuid.UUID]=Field(default=None,foreign_key="users.uid")
