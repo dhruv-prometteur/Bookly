@@ -1,0 +1,63 @@
+# ======================
+# Python
+# ======================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ======================
+# Virtual Environment
+# ======================
+
+
+# Virtual environment
+myenv/
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+# ======================
+# FastAPI / Uvicorn
+# ======================
+*.log
+
+# ======================
+# Environment variables
+# ======================
+.env
+.env.*
+
+# ======================
+# IDEs
+# ======================
+.vscode/
+.idea/
+
+# ======================
+# Testing / coverage
+# ======================
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ======================
+# MyPy / type checker
+# ======================
+.mypy_cache/
+
+# ======================
+# OS files
+# ======================
+.DS_Store
+Thumbs.db
+
+# ======================
+# Build / dist
+# ======================
+dist/
+build/
+*.egg-info/
