@@ -27,7 +27,8 @@ app=FastAPI(
     redoc_url=f"/api/{version}/redoc",
     contact={
         "email":"dhruvpatel2581@gmail.com"
-    }
+    },
+    lifespan=lifespan
     )
 
 
